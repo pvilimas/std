@@ -81,7 +81,7 @@ typedef array(double) array_double;
 #define array_fill(a, v)                                              \
   do {                                                                \
     for (usize __i = 0; __i < (a)->len; __i++) {                      \
-      (a)->start[__i] = (v);                                          \
+      (a)->data[__i] = (v);                                           \
     }                                                                 \
   } while(0)
 
@@ -134,13 +134,13 @@ typedef array(double) array_double;
 // stores each value in t
 #define array_iter(a, t)                                                      \
   if ((a)->len > 0)                                                           \
-  for (usize __i = 0; __i < (a)->len && (((t) = (a)->start[__i]), 1); ++__i)  \
+  for (usize __i = 0; __i < (a)->len && (((t) = (a)->data[__i]), 1); ++__i)   \
 
 
 // enumerate: stores each index in i and each value in t
 #define array_enum(a, i, t)                                                   \
   if ((a)->len > 0)                                                           \
-  for ((i) = 0; (i) < (a)->len && (((t) = (a)->start[(i)]), 1); ++(i))        \
+  for ((i) = 0; (i) < (a)->len && (((t) = (a)->data[(i)]), 1); ++(i))         \
 
 
 void __a_resize(void** data, usize* len, usize memsz, usize new_size) {

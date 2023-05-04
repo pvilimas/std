@@ -149,6 +149,8 @@ typedef map(double) map_double;
 
 
 bool __m_contains(void*** entries, usize* size, usize* cap, usize memsz, c_str key) {
+    (void)size;
+    (void)memsz;
     usize index = str_hash(key) % *cap;
     void* entry = (*entries)[index];
     while (entry != null) {
@@ -219,6 +221,8 @@ bool __m_contains(void*** entries, usize* size, usize* cap, usize memsz, c_str k
 
 
 void* __m_key_addr(void*** entries, usize* size, usize* cap, usize memsz, c_str key) {
+    (void)size;
+    (void)memsz;
     usize index = str_hash(key) % *cap;
     void* entry = (*entries)[index];
     while (entry != null) {
@@ -266,6 +270,7 @@ void* __m_key_addr(void*** entries, usize* size, usize* cap, usize memsz, c_str 
 
 
 array_cstr __m_keys(void*** entries, usize* size, usize* cap, usize memsz) {
+    (void)memsz;
     array_cstr a;
     array_init(a, *size);
     usize i = 0;

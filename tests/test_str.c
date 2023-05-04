@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-#include "std/str.h"
+#include "../std/str.h"
 
 void test_str_new() {
     str s = str_new();

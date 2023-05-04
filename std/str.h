@@ -91,6 +91,7 @@ Specific stuff:
 // GENERIC MACROS
 // type-specific function names are mangled to avoid confusion, just use the macros
 
+#define STD_STR_DECL static __attribute__((unused))
 
 // length of a string
 #define str_len(s)                  \
@@ -99,8 +100,8 @@ Specific stuff:
         c_str: __slc                \
     )(s))
 
-static usize __sls(str);
-static usize __slc(c_str);
+STD_STR_DECL usize __sls(str);
+STD_STR_DECL usize __slc(c_str);
 
 // compare two strings
 #define str_equals(a, b)                            \
@@ -113,12 +114,12 @@ static usize __slc(c_str);
             str: __seqcs,                           \
             c_str: __seqcc                          \
         )                                           \
-    )(a, b))
+    )((a), (b)))
 
-static bool __seqss(str, str);
-static bool __seqsc(str, c_str);
-static bool __seqcs(c_str, str);
-static bool __seqcc(c_str, c_str);
+STD_STR_DECL bool __seqss(str, str);
+STD_STR_DECL bool __seqsc(str, c_str);
+STD_STR_DECL bool __seqcs(c_str, str);
+STD_STR_DECL bool __seqcc(c_str, c_str);
 
 // hash of a string
 #define str_hash(s)                 \
@@ -127,8 +128,8 @@ static bool __seqcc(c_str, c_str);
         c_str: __shc                \
     )(s))
 
-static usize __shs(str);
-static usize __shc(c_str);
+STD_STR_DECL usize __shs(str);
+STD_STR_DECL usize __shc(c_str);
 
 // does string start with a value?
 #define str_starts_with(s, x)       \
@@ -136,11 +137,11 @@ static usize __shc(c_str);
         str: __ssws,                \
         c_str: __sswc,              \
         int: __sswch                \
-    )(s, x))
+    )((s), (x)))
 
-static bool __ssws(str, str);
-static bool __sswc(str, c_str);
-static bool __sswch(str, char);
+STD_STR_DECL bool __ssws(str, str);
+STD_STR_DECL bool __sswc(str, c_str);
+STD_STR_DECL bool __sswch(str, char);
 
 // does string end with a value?
 #define str_ends_with(s, x)         \
@@ -148,11 +149,11 @@ static bool __sswch(str, char);
         str: __sews,                \
         c_str: __sewc,              \
         int: __sewch                \
-    )(s, x))
+    )((s), (x)))
 
-static bool __sews(str, str);
-static bool __sewc(str, c_str);
-static bool __sewch(str, char);
+STD_STR_DECL bool __sews(str, str);
+STD_STR_DECL bool __sewc(str, c_str);
+STD_STR_DECL bool __sewch(str, char);
 
 // does string contain a value?
 #define str_has(s, x)               \
@@ -160,11 +161,11 @@ static bool __sewch(str, char);
         str: __shass,               \
         c_str: __shasc,             \
         int: __shasch               \
-    )(s, x))
+    )((s), (x)))
 
-static bool __shass(str, str);
-static bool __shasc(str, c_str);
-static bool __shasch(str, char);
+STD_STR_DECL bool __shass(str, str);
+STD_STR_DECL bool __shasc(str, c_str);
+STD_STR_DECL bool __shasch(str, char);
 
 // first index of value in string, or -1
 #define str_find(s, x)              \
@@ -172,11 +173,11 @@ static bool __shasch(str, char);
         str: __sfs,                 \
         c_str: __sfc,               \
         int: __sfch                 \
-    )(s, x))
+    )((s), (x)))
 
-static isize __sfs(str, str);
-static isize __sfc(str, c_str);
-static isize __sfch(str, char);
+STD_STR_DECL isize __sfs(str, str);
+STD_STR_DECL isize __sfc(str, c_str);
+STD_STR_DECL isize __sfch(str, char);
 
 // count number of times value appears in string
 #define str_count(s, x)             \
@@ -184,21 +185,21 @@ static isize __sfch(str, char);
         str: __scnts,               \
         c_str: __snctc,             \
         int: __scntch               \
-    )(s, x))
+    )((s), (x)))
 
-static usize __scnts(str, str);
-static usize __snctc(str, c_str);
-static usize __scntch(str, char);
+STD_STR_DECL usize __scnts(str, str);
+STD_STR_DECL usize __snctc(str, c_str);
+STD_STR_DECL usize __scntch(str, char);
 
 // python-style slice, returns deep copy
 #define str_slice(s, i, j)          \
     (_Generic((s),                  \
         str: __ssls,                \
         c_str: __sslc               \
-    )(s, i, j))
+    )((s), (i), (j)))
 
-static str __ssls(str, isize, isize);
-static str __sslc(c_str, isize, isize);
+STD_STR_DECL str __ssls(str, isize, isize);
+STD_STR_DECL str __sslc(c_str, isize, isize);
 
 // in-place append value
 #define str_append(s, x)            \
@@ -206,11 +207,11 @@ static str __sslc(c_str, isize, isize);
         str: __saps,                \
         c_str: __sapc,              \
         char: __sapch               \
-    )(s, x))
+    )((s), (x)))
 
-static void __saps(str, str);
-static void __sapc(str, c_str);
-static void __sapch(str, char);
+STD_STR_DECL void __saps(str, str);
+STD_STR_DECL void __sapc(str, c_str);
+STD_STR_DECL void __sapch(str, char);
 
 // in-place prepend value
 #define str_prepend(s, x)           \
@@ -218,11 +219,11 @@ static void __sapch(str, char);
         str: __sprs,                \
         c_str: __sprc,              \
         int: __sprch                \
-    )(s, x))
+    )((s), (x)))
 
-static void __sprs(str, str);
-static void __sprc(str, c_str);
-static void __sprch(str, char);
+STD_STR_DECL void __sprs(str, str);
+STD_STR_DECL void __sprc(str, c_str);
+STD_STR_DECL void __sprch(str, char);
 
 // in-place insert value at specific index
 #define str_insert(s, x, i)         \
@@ -230,11 +231,11 @@ static void __sprch(str, char);
         str: __sinss,               \
         c_str: __sinsc,             \
         int: __sinsch               \
-    )(s, x, i))
+    )((s), (x), (i)))
 
-static void __sinss(str, str, usize);
-static void __sinsc(str, c_str, usize);
-static void __sinsch(str, char, usize);
+STD_STR_DECL void __sinss(str, str, usize);
+STD_STR_DECL void __sinsc(str, c_str, usize);
+STD_STR_DECL void __sinsch(str, char, usize);
 
 // split by delimiter
 #define str_split(s, x)                             \
@@ -249,14 +250,14 @@ static void __sinsch(str, char, usize);
             c_str: __ssplcc,                        \
             int: __ssplcch                          \
         )                                           \
-    )(s, x))
+    )((s), (x)))
 
-static array_str __ssplss(str, str);
-static array_str __ssplsc(str, c_str);
-static array_str __ssplsch(str, char);
-static array_str __ssplcs(c_str, str);
-static array_str __ssplcc(c_str, c_str);
-static array_str __ssplcch(c_str, char);
+STD_STR_DECL array_str __ssplss(str, str);
+STD_STR_DECL array_str __ssplsc(str, c_str);
+STD_STR_DECL array_str __ssplsch(str, char);
+STD_STR_DECL array_str __ssplcs(c_str, str);
+STD_STR_DECL array_str __ssplcc(c_str, c_str);
+STD_STR_DECL array_str __ssplcch(c_str, char);
 
 // python-style partition by delimiter
 #define str_partition(s, x)                             \
@@ -271,14 +272,14 @@ static array_str __ssplcch(c_str, char);
             c_str: __sprtcc,                            \
             int: __sprtcch                              \
         )                                               \
-    )(s, x))
+    )((s), (x)))
 
-static array_str __sprtss(str, str);
-static array_str __sprtsc(str, c_str);
-static array_str __sprtsch(str, char);
-static array_str __sprtcs(c_str, str);
-static array_str __sprtcc(c_str, c_str);
-static array_str __sprtcch(c_str, char);
+STD_STR_DECL array_str __sprtss(str, str);
+STD_STR_DECL array_str __sprtsc(str, c_str);
+STD_STR_DECL array_str __sprtsch(str, char);
+STD_STR_DECL array_str __sprtcs(c_str, str);
+STD_STR_DECL array_str __sprtcc(c_str, c_str);
+STD_STR_DECL array_str __sprtcch(c_str, char);
 
 // join a list of strings on a delimiter
 #define str_join(l, x)              \
@@ -286,11 +287,11 @@ static array_str __sprtcch(c_str, char);
         str: __sjs,                 \
         c_str: __sjc,               \
         int: __sjch                 \
-    )(l, x))
+    )((l), (x)))
 
-static str __sjs(array_str, str);
-static str __sjc(array_str, c_str);
-static str __sjch(array_str, char);
+STD_STR_DECL str __sjs(array_str, str);
+STD_STR_DECL str __sjc(array_str, c_str);
+STD_STR_DECL str __sjch(array_str, char);
 
 // in-place convert to uppercase
 #define str_upper(s)                \
@@ -299,8 +300,8 @@ static str __sjch(array_str, char);
         c_str: __supc               \
     )(s))
 
-static str __sups(str);
-static str __supc(c_str);
+STD_STR_DECL str __sups(str);
+STD_STR_DECL str __supc(c_str);
 
 // in-place convert to lowercase
 #define str_lower(s)                \
@@ -309,8 +310,8 @@ static str __supc(c_str);
         c_str: __sloc               \
     )(s))
 
-static str __slos(str);
-static str __sloc(c_str);
+STD_STR_DECL str __slos(str);
+STD_STR_DECL str __sloc(c_str);
 
 // in-place reverse characters
 #define str_reverse(s)              \
@@ -319,8 +320,8 @@ static str __sloc(c_str);
         c_str: __srec               \
     )(s))
 
-static str __sres(str);
-static str __srec(c_str);
+STD_STR_DECL str __sres(str);
+STD_STR_DECL str __srec(c_str);
 
 // construct a string from a value repeated N times
 #define str_repeat(s, x)            \
@@ -328,11 +329,11 @@ static str __srec(c_str);
         str: __sreps,               \
         c_str: __srepc,             \
         int: __srepch               \
-    ))
+    )((s), (x)))
 
-static str __sreps(str, usize);
-static str __srepc(c_str, usize);
-static str __srepch(char, usize);
+STD_STR_DECL str __sreps(str, usize);
+STD_STR_DECL str __srepc(c_str, usize);
+STD_STR_DECL str __srepch(char, usize);
 
 
 // DEFINITIONS
@@ -588,7 +589,7 @@ usize __snctc(str big, c_str small) {
 
 usize __scntch(str s, char c) {
     usize count = 0;
-    for (int i = 0; i < s->len; i++) {
+    for (usize i = 0; i < s->len; i++) {
         if (s->chars[i] == c) {
             count++;
         }
@@ -713,7 +714,7 @@ array_str __ssplss(str s, str delim) {
     if (delim->len == 0) {
         array_str a;
         array_init(a, delim->len);
-        for (int i = 0; i < delim->len; i++) {
+        for (usize i = 0; i < delim->len; i++) {
             str s2 = str_new();
             str_append(s2, str_at(s, i));
             array_write(a, i, s2);
@@ -725,7 +726,7 @@ array_str __ssplss(str s, str delim) {
     c_str cs = s_copy->chars;
     char **result = null;
     char *token = null;
-    int count = 0;
+    usize count = 0;
     token = strstr(cs, delim->chars);
     while (token != null) {
         *token = '\0';
@@ -739,7 +740,7 @@ array_str __ssplss(str s, str delim) {
     result[count] = null;
     array_str a;
     array_init(a, count);
-    for(int i = 0; i < count; i++) {
+    for(usize i = 0; i < count; i++) {
         array_write(a, i, str_from(result[i]));
     }
     str_free(s_copy);
@@ -751,7 +752,7 @@ array_str __ssplsc(str s, c_str delim) {
     if (delim_len == 0) {
         array_str a;
         array_init(a, delim_len);
-        for (int i = 0; i < delim_len; i++) {
+        for (usize i = 0; i < delim_len; i++) {
             array_write(a, i, str_alloc(1));
             str_write(a->data[i], str_at(s, i), i);
         }
@@ -762,7 +763,7 @@ array_str __ssplsc(str s, c_str delim) {
     c_str cs = s_copy->chars;
     char **result = null;
     char *token = null;
-    int count = 0;
+    usize count = 0;
     token = strstr(cs, delim);
     while (token != null) {
         *token = '\0';
@@ -776,7 +777,7 @@ array_str __ssplsc(str s, c_str delim) {
     result[count] = null;
     array_str a;
     array_init(a, count);
-    for(int i = 0; i < count; i++) {
+    for(usize i = 0; i < count; i++) {
         array_write(a, i, str_from(result[i]));
     }
     str_free(s_copy);
@@ -792,7 +793,7 @@ array_str __ssplcs(c_str cs, str delim) {
     if (delim->len == 0) {
     array_str a;
     array_init(a, delim->len);
-        for (int i = 0; i < delim->len; i++) {
+        for (usize i = 0; i < delim->len; i++) {
             array_write(a, i, str_alloc(1));
             str_write(a->data[i], cs[i], i);
         }
@@ -803,7 +804,7 @@ array_str __ssplcs(c_str cs, str delim) {
     c_str cs_copy = s->chars;
     char **result = null;
     char *token = null;
-    int count = 0;
+    usize count = 0;
     token = strstr(cs_copy, delim->chars);
     while (token != null) {
         *token = '\0';
@@ -817,7 +818,7 @@ array_str __ssplcs(c_str cs, str delim) {
     result[count] = null;
     array_str a;
     array_init(a, count);
-    for(int i = 0; i < count; i++) {
+    for(usize i = 0; i < count; i++) {
         array_write(a, i, str_from(result[i]));
     }
     str_free(s);
@@ -829,7 +830,7 @@ array_str __ssplcc(c_str cs, c_str delim) {
     if (delim_len == 0) {
     array_str a;
     array_init(a, delim_len);
-        for (int i = 0; i < delim_len; i++) {
+        for (usize i = 0; i < delim_len; i++) {
             array_write(a, i, str_alloc(1));
             str_write(a->data[i], cs[i], i);
         }
@@ -840,7 +841,7 @@ array_str __ssplcc(c_str cs, c_str delim) {
     c_str cs_copy = s->chars;
     char **result = null;
     char *token = null;
-    int count = 0;
+    usize count = 0;
     token = strstr(cs_copy, delim);
     while (token != null) {
         *token = '\0';
@@ -854,7 +855,7 @@ array_str __ssplcc(c_str cs, c_str delim) {
     result[count] = null;
     array_str a;
     array_init(a, count);
-    for(int i = 0; i < count; i++) {
+    for(usize i = 0; i < count; i++) {
         array_write(a, i, str_from(result[i]));
     }
     str_free(s);
@@ -973,7 +974,7 @@ str __sjs(array_str a, str delim) {
     if (a->len == 0) {
         return s;
     }
-    for (int i = 0; i < a->len-1; i++) {
+    for (usize i = 0; i < a->len-1; i++) {
         __saps(s, a->data[i]);
         __saps(s, delim);
     }
@@ -986,7 +987,7 @@ str __sjc(array_str a, c_str delim) {
     if (a->len == 0) {
         return s;
     }
-    for (int i = 0; i < a->len-1; i++) {
+    for (usize i = 0; i < a->len-1; i++) {
         __saps(s, a->data[i]);
         __sapc(s, delim);
     }
@@ -999,7 +1000,7 @@ str __sjch(array_str a, char delim) {
     if (a->len == 0) {
         return s;
     }
-    for (int i = 0; i < a->len-1; i++) {
+    for (usize i = 0; i < a->len-1; i++) {
         __saps(s, a->data[i]);
         __sapch(s, delim);
     }
@@ -1009,7 +1010,7 @@ str __sjch(array_str a, char delim) {
 
 str __sups(str s) {
     str s2 = str_copy(s);
-    for (int i = 0; i < s2->len; i++) {
+    for (usize i = 0; i < s2->len; i++) {
         s2->chars[i] = toupper(s->chars[i]);
     }
     return s2;
@@ -1017,7 +1018,7 @@ str __sups(str s) {
 
 str __supc(c_str cs) {
     str s = str_from(cs);
-    for (int i = 0; i < s->len; i++) {
+    for (usize i = 0; i < s->len; i++) {
         s->chars[i] = toupper(cs[i]);
     }
     return s;
@@ -1025,7 +1026,7 @@ str __supc(c_str cs) {
 
 str __slos(str s) {
     str s2 = str_copy(s);
-    for (int i = 0; i < s->len; i++) {
+    for (usize i = 0; i < s->len; i++) {
         s2->chars[i] = tolower(s->chars[i]);
     }
     return s2;
@@ -1033,7 +1034,7 @@ str __slos(str s) {
 
 str __sloc(c_str cs) {
     str s = str_from(cs);
-    for (int i = 0; i < s->len; i++) {
+    for (usize i = 0; i < s->len; i++) {
         s->chars[i] = tolower(cs[i]);
     }
     return s;
@@ -1041,7 +1042,7 @@ str __sloc(c_str cs) {
 
 str __sres(str s) {
     str r = str_copy(s);
-    for (int i = 0, j = r->len-1; i < j; i++, j--) {
+    for (usize i = 0, j = r->len-1; i < j; i++, j--) {
         char temp = r->chars[i];
         r->chars[i] = r->chars[j];
         r->chars[j] = temp;
@@ -1051,7 +1052,7 @@ str __sres(str s) {
 
 str __srec(c_str cs) {
     str r = str_from(cs);
-    for (int i = 0, j = r->len-1; i < j; i++, j--) {
+    for (usize i = 0, j = r->len-1; i < j; i++, j--) {
         char temp = r->chars[i];
         r->chars[i] = r->chars[j];
         r->chars[j] = temp;
@@ -1061,7 +1062,7 @@ str __srec(c_str cs) {
 
 str __sreps(str s, usize n) {
     str r = str_alloc(s->len * n);
-    for (int i = 0; i < n; i++) {
+    for (usize i = 0; i < n; i++) {
         memcpy(r->chars + (s->len * i), s->chars, s->len);
     }
     return r;
@@ -1070,7 +1071,7 @@ str __sreps(str s, usize n) {
 str __srepc(c_str cs, usize n) {
     usize len = strlen(cs);
     str r = str_alloc(len * n);
-    for (int i = 0; i < n; i++) {
+    for (usize i = 0; i < n; i++) {
         memcpy(r->chars + (len * i), cs, len);
     }
     return r;
