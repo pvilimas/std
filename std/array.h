@@ -15,7 +15,7 @@ array(T) - the type of an array. Until C23, typedef this to something before usi
 
 ** Memory management **
 array_init(a, n)                    -- initialize array with n elements
-array_free(a)                     -- free all memory
+array_free(a)                       -- free all memory
 array_resize(a, n)                  -- resize to n elements
 array_fill(a, val)                  -- fill an array with val
 

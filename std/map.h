@@ -20,7 +20,7 @@ Until C23, typedef this to something before using (see examples).
 
 ** Memory management **
 map_init(m)                     -- initialize map
-map_free(m)                   -- free all memory
+map_free(m)                     -- free all memory
 map_clear(m)                    -- clear all keys and values
 
 ** Properties **
