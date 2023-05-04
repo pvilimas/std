@@ -26,7 +26,7 @@ void test_vec_reserve() {
     } else {
         printf("vec_reserve: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_truncate
@@ -41,7 +41,7 @@ void test_vec_truncate() {
     } else {
         printf("vec_truncate: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_compact
@@ -56,7 +56,7 @@ void test_vec_compact() {
     } else {
         printf("vec_compact: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_clear
@@ -71,7 +71,7 @@ void test_vec_clear() {
     } else {
         printf("vec_clear: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_len
@@ -86,7 +86,7 @@ void test_vec_len() {
     } else {
         printf("vec_len: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_is_empty
@@ -101,7 +101,7 @@ void test_vec_is_empty() {
     } else {
         printf("vec_is_empty: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_push
@@ -117,7 +117,7 @@ void test_vec_push() {
     } else {
         printf("vec_push: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_pop
@@ -132,7 +132,7 @@ void test_vec_pop() {
     } else {
         printf("vec_pop: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_insert
@@ -148,7 +148,7 @@ void test_vec_insert() {
     } else {
         printf("vec_insert: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_remove
@@ -165,7 +165,7 @@ void test_vec_remove() {
     } else {
         printf("vec_remove: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_swap
@@ -184,7 +184,7 @@ void test_vec_swap() {
     } else {
         printf("vec_swap: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_extend_from
@@ -200,7 +200,7 @@ void test_vec_extend_from() {
     } else {
         printf("vec_extend_from: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_extend
@@ -220,8 +220,8 @@ void test_vec_extend() {
     } else {
         printf("vec_extend: FAILED\n");
     }
-    vec_deinit(v1);
-    vec_deinit(v2);
+    vec_free(v1);
+    vec_free(v2);
 }
 
 // Test function for vec_at
@@ -237,7 +237,7 @@ void test_vec_at() {
     } else {
         printf("vec_at: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_first
@@ -253,7 +253,7 @@ void test_vec_first() {
     } else {
         printf("vec_first: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_last
@@ -269,7 +269,7 @@ void test_vec_last() {
     } else {
         printf("vec_last: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_sort
@@ -290,7 +290,7 @@ void test_vec_sort() {
     } else {
         printf("vec_sort: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_find
@@ -310,7 +310,7 @@ void test_vec_find() {
     } else {
         printf("vec_find: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_reverse
@@ -327,7 +327,7 @@ void test_vec_reverse() {
     } else {
         printf("vec_reverse: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_iter
@@ -349,7 +349,7 @@ void test_vec_iter() {
     } else {
         printf("vec_iter: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 // Test function for vec_enum
@@ -372,7 +372,7 @@ void test_vec_enum() {
     } else {
         printf("vec_iter: FAILED\n");
     }
-    vec_deinit(v);
+    vec_free(v);
 }
 
 int main() {

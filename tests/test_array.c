@@ -55,8 +55,8 @@ int main() {
     }
     printf("\n");
 
-    // Deinitialize the array
-    array_deinit(points);
+    // freeialize the array
+    array_free(points);
 
     return 0;
 }

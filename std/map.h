@@ -20,7 +20,7 @@ Until C23, typedef this to something before using (see examples).
 
 ** Memory management **
 map_init(m)                     -- initialize map
-map_deinit(m)                   -- free all memory
+map_free(m)                   -- free all memory
 map_clear(m)                    -- clear all keys and values
 
 ** Properties **
@@ -110,7 +110,7 @@ typedef map(double) map_double;
 
 
 // free all memory
-#define map_deinit(m)                                       \
+#define map_free(m)                                         \
     do {                                                    \
         for (usize mdi_ = 0; mdi_ < (m)->cap; mdi_++) {     \
             if ((m)->entries[mdi_] == null) {               \
@@ -128,7 +128,7 @@ typedef map(double) map_double;
 // clear all keys and values
 #define map_clear(m)    \
     do {                \
-        map_deinit(m);  \
+        map_free(m);    \
         map_init(m);    \
     } while(0)
 

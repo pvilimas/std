@@ -65,7 +65,7 @@ void test_point_map() {
     //     printf("%s: (%d, %d)\n", k, v.x, v.y);
     // }
 
-    map_deinit(m);
+    map_free(m);
 }
 
 int main() {

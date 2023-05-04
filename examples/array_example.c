@@ -29,7 +29,7 @@ int main() {
         printf("(%d, %d)\n", p.x, p.y);
     }
 
-    array_deinit(points);
+    array_free(points);
 
     return 0;
 }

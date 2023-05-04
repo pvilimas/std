@@ -40,7 +40,7 @@ int main() {
     // Free the memory allocated for the strings and list of strings
     str_free(s1);
     str_free(s2);
-    array_deinit(parts);
+    array_free(parts);
 
     return 0;
 }

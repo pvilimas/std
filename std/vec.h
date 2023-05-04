@@ -15,7 +15,7 @@ vec(T) - the type of a vector. Until C23, typedef this to something before using
 
 ** Memory management **
 vec_init(v)                         -- initialize vector
-vec_deinit(v)                       -- free all memory
+vec_free(v)                       -- free all memory
 vec_reserve(v, n)                   -- reserve size for n elements
 vec_truncate(v, n)                  -- reduce to just the first n elements
 vec_compact(v)                      -- compact vector down to minimum size
@@ -76,7 +76,7 @@ typedef vec(double) vec_double;
 
 
 // free all memory
-#define vec_deinit(v)           \
+#define vec_free(v)           \
   do {                          \
     free((v)->data);            \
     memset(v, 0, sizeof(*(v))); \

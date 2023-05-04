@@ -49,7 +49,7 @@ int main() {
     }
 
     // Free memory and exit
-    array_deinit(keys);
-    map_deinit(m);
+    array_free(keys);
+    map_free(m);
     return 0;
 }
