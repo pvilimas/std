@@ -275,8 +275,8 @@ int __v_compact(void** data, usize* len, usize* cap, usize memsz) {
 int __v_insert(void** data, usize* len, usize* cap, usize memsz, usize idx) {
   int err = __v_expand(data, len, cap, memsz);
   if (err) return err;
-  memmove(*data + (idx + 1) * memsz,
-          *data + idx * memsz,
+  memmove(((char*)(*data)) + (idx + 1) * memsz,
+          ((char*)(*data)) + idx * memsz,
           (*len - idx) * memsz);
   return 0;
 }
@@ -284,16 +284,16 @@ int __v_insert(void** data, usize* len, usize* cap, usize memsz, usize idx) {
 
 void __v_splice(void **data, usize *len, usize *cap, usize memsz, usize start, usize count) {
   (void) cap;
-  memmove(*data + start * memsz,
-          *data + (start + count) * memsz,
+  memmove(((char*)(*data)) + start * memsz,
+          ((char*)(*data)) + (start + count) * memsz,
           (*len - start - count) * memsz);
 }
 
 
 void __v_swapsplice(void **data, usize *len, usize *cap, usize memsz, usize start, usize count) {
   (void) cap;
-  memmove(*data + start * memsz,
-          *data + (*len - count) * memsz,
+  memmove(((char*)(*data)) + start * memsz,
+          ((char*)(*data)) + (*len - count) * memsz,
           count * memsz);
 }
 
