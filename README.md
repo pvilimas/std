@@ -9,6 +9,5 @@
 - The generic classes define basic primitive types
 - You can either `#include "std.h"` or specific file like `#include "std/str.h"`
 - See examples for how to use
-- Does not use any compiler extensions
 - All examples and tests written by ChatGPT
 - Planning on adding more stuff at some point when I need it
